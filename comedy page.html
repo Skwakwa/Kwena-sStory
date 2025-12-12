@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comedy - Your Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .page-hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .video-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 107, 0.5);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            position: relative;
+        }
+
+        .video-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 25px;
+        }
+
+        .video-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .video-description {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Upcoming Shows */
+        .shows-section {
+            background: rgba(255,255,255,0.03);
+            padding: 80px 20px;
+            border-radius: 30px;
+            margin-bottom: 80px;
+        }
+
+        .shows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .show-card {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            transition: all 0.3s;
+        }
+
+        .show-card:hover {
+            transform: translateX(10px);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .show-date {
+            font-size: 1.8em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .show-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .show-location {
+            color: #999;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .show-details {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .ticket-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .ticket-btn:hover {
+            background: #ee5a6f;
+            transform: translateY(-2px);
+        }
+
+        /* Comedy Style */
+        .style-section {
+            margin: 100px 0;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .style-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(238, 90, 111, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .style-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .style-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+        }
+
+        .style-card p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 30px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            -webkit-text-fill-color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: white;
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5em;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 20px;
+                gap: 15px;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YOUR NAME</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="comedy.html">Comedy</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="freestyles.html">Freestyles</a></li>
+                <li><a href="music-videos.html">Music Videos</a></li>
+                <li><a href="songs.html">Songs</a></li>
+                <li><a href="press.html">Media Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <h1>😂 Comedy</h1>
+        <p>Laughter, Energy, and Real Talk</p>
+    </section>
+
+    <div class="container">
+        <p class="intro-text">
+            My comedy is raw, relatable, and real. I talk about everyday situations, personal experiences, 
+            and observations that everyone can connect with. Whether it's a full stand-up set or comedy shorts, 
+            my goal is simple: make you laugh until it hurts.
+        </p>
+
+        <!-- Comedy Videos -->
+        <h2>Comedy Videos</h2>
+        <div class="video-grid">
+            <!-- ADD YOUR COMEDY VIDEOS HERE -->
+            <!-- Example YouTube embed: -->
+            <!-- <div class="video-placeholder">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+            </div> -->
+            
+            <div class="video-card">
+                <div class="video-placeholder">
+                    😂
+                    <!-- REPLACE WITH: <iframe src="YOUR_YOUTUBE_EMBED_LINK" allowfullscreen></iframe> -->
+                </div>
+                <div class="video-info">
+                    <h3>That Awkward Moment...</h3>
+                    <div class="video-meta">
+                        <span>👁️ 50K views</span>
+                        <span>📅 Oct 2024</span>
+                    </div>
+                    <p class="video-description">When you realize you've been talking to the wrong person for 10 minutes...</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    🎤
+                </div>
+                <div class="video-info">
+                    <h3>Family Gatherings</h3>
+                    <div class="video-meta">
+                        <span>👁️ 35K views</span>
+                        <span>📅 Sep 2024</span>
+                    </div>
+                    <p class="video-description">Why every family gathering feels like a full-time job with unpaid overtime.</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    💯
+                </div>
+                <div class="video-info">
+                    <h3>Dating in 2024</h3>
+                    <div class="video-meta">
+                        <span>👁️ 80K views</span>
+                        <span>📅 Aug 2024</span>
+                    </div>
+                    <p class="video-description">The absolute chaos of modern dating apps and expectations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comedy Style -->
+        <section class="style-section">
+            <h2>My Comedy Style</h2>
+            <div class="style-grid">
+                <div class="style-card">
+                    <div class="style-icon">⚡</div>
+                    <h3>High Energy</h3>
+                    <p>Fast-paced, animated, and full of life. I bring the energy that keeps audiences engaged from start to finish.</p>
+                </div>
+
+                <div class="style-card">
+                    <div class="style-icon">💯</div>
+                    <h3>Relatable</h3>
+                    <p>Real stories, real situations, real laughs. I talk about things everyone experiences but nobody talks about.</p>
+                </div>
+
+                <div class="style-card">
+                    <div class="style-icon">🎯</div>
+                    <h3>Observational</h3>
+                    <p>I see the funny in everyday life and bring it to light in ways that make you say "that's so true!"</p>
+                </div>
+
+                <div class="style-card">
+                    <div class="style-icon">🔥</div>
+                    <h3>Authentic</h3>
+                    <p>No fake personas, no stolen jokes. Just me being me, sharing my perspective with honesty and humor.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Shows -->
+        <section class="shows-section">
+            <h2>Upcoming Shows</h2>
+            <div class="shows-grid">
+                <!-- ADD YOUR UPCOMING SHOWS HERE -->
+                <div class="show-card">
+                    <div class="show-date">DEC 20, 2024</div>
+                    <h3>Comedy Night Live</h3>
+                    <div class="show-location">📍 The Comedy Club, Johannesburg</div>
+                    <p class="show-details">Join me for an evening of non-stop laughter. Special guest appearances and all-new material!</p>
+                    <a href="#" class="ticket-btn">Get Tickets</a>
+                </div>
+
+                <div class="show-card">
+                    <div class="show-date">JAN 15, 2025</div>
+                    <h3>New Year, New Jokes</h3>
+                    <div class="show-location">📍 Entertainment Arena, Pretoria</div>
+                    <p class="show-details">Fresh material to kick off the new year with laughs and good vibes.</p>
+                    <a href="#" class="ticket-btn">Get Tickets</a>
+                </div>
+
+                <div class="show-card">
+                    <div class="show-date">FEB 10, 2025</div>
+                    <h3>Valentine's Laughs</h3>
+                    <div class="show-location">📍 City Hall, Cape Town</div>
+                    <p class="show-details">Comedy about love, relationships, and everything in between. Perfect date night!</p>
+                    <a href="#" class="ticket-btn">Get Tickets</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Book Me For Your Event</h2>
+            <p>Looking for comedy entertainment? Let's make your event unforgettable!</p>
+            <a href="contact.html" class="btn">Contact Me</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a> | 
+            <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> | 
+            <a href="https://tiktok.com/@yourprofile" target="_blank">TikTok</a> | 
+            <a href="https://x.com/yourprofile" target="_blank">X</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

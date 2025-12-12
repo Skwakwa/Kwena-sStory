@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freestyles - Your Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .page-hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Freestyle Grid */
+        .freestyle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .freestyle-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .freestyle-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(240, 147, 251, 0.5);
+        }
+
+        .freestyle-thumbnail {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            position: relative;
+        }
+
+        .freestyle-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .freestyle-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .play-icon {
+            position: absolute;
+            font-size: 3em;
+            background: rgba(0,0,0,0.7);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-icon:hover {
+            transform: scale(1.1);
+            background: rgba(0,0,0,0.9);
+        }
+
+        .freestyle-info {
+            padding: 25px;
+        }
+
+        .freestyle-info h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .freestyle-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .freestyle-description {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .platform-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .platform-btn {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .platform-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background: rgba(255,255,255,0.03);
+            padding: 60px 20px;
+            border-radius: 30px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .featured-video {
+            max-width: 800px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            margin-bottom: 30px;
+        }
+
+        .featured-video iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .featured-title {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .featured-description {
+            font-size: 1.2em;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Style Info */
+        .style-section {
+            margin: 100px 0;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .style-card {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .style-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .style-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #f093fb;
+        }
+
+        .style-card p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5em;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 20px;
+                gap: 15px;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YOUR NAME</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="comedy.html">Comedy</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="freestyles.html">Freestyles</a></li>
+                <li><a href="music-videos.html">Music Videos</a></li>
+                <li><a href="songs.html">Songs</a></li>
+                <li><a href="press.html">Media Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <h1>🎵 Freestyles</h1>
+        <p>Raw Bars, No Script, Pure Energy</p>
+    </section>
+
+    <div class="container">
+        <p class="intro-text">
+            Freestyles are where I'm most raw and real. No script, no edits—just me, a beat, and whatever comes to mind. 
+            This is hip-hop in its purest form: spontaneous, authentic, and straight from the soul.
+        </p>
+
+        <!-- Featured Freestyle -->
+        <section class="featured-section">
+            <h2>Latest Freestyle</h2>
+            <div class="featured-video">
+                🔥
+                <!-- ADD YOUR LATEST FREESTYLE VIDEO HERE -->
+                <!-- Example: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+            </div>
+            <h3 class="featured-title">Freestyle Over [Beat Name]</h3>
+            <p class="featured-description">My latest freestyle session - completely off the dome. No writing, no planning, just vibes and bars.</p>
+        </section>
+
+        <!-- Freestyle Grid -->
+        <h2>All Freestyles</h2>
+        <div class="freestyle-grid">
+            <!-- ADD YOUR FREESTYLES HERE -->
+            <!-- Example Freestyle 1 -->
+            <div class="freestyle-card">
+                <div class="freestyle-thumbnail">
+                    <div class="play-icon">▶️</div>
+                    🎤
+                    <!-- REPLACE WITH: <img src="thumbnail.jpg" alt="Freestyle"> 
+                         OR: <iframe src="YOUR_VIDEO_EMBED"></iframe> -->
+                </div>
+                <div class="freestyle-info">
+                    <h3>Midnight Session Freestyle</h3>
+                    <div class="freestyle-meta">
+                        <span>👁️ 25K views</span>
+                        <span>📅 Nov 2024</span>
+                    </div>
+                    <p class="freestyle-description">Late night vibes, pure energy. Went off for 3 minutes straight.</p>
+                    <div class="platform-links">
+                        <a href="#" class="platform-btn">▶️ YouTube</a>
+                        <a href="#" class="platform-btn">🎵 TikTok</a>
+                        <a href="#" class="platform-btn">📸 Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Freestyle 2 -->
+            <div class="freestyle-card">
+                <div class="freestyle-thumbnail">
+                    <div class="play-icon">▶️</div>
+                    🔥
+                </div>
+                <div class="freestyle-info">
+                    <h3>Street Cipher Freestyle</h3>
+                    <div class="freestyle-meta">
+                        <span>👁️ 40K views</span>
+                        <span>📅 Oct 2024</span>
+                    </div>
+                    <p class="freestyle-description">Caught in a street cipher with the crew. This one got crazy!</p>
+                    <div class="platform-links">
+                        <a href="#" class="platform-btn">▶️ YouTube</a>
+                        <a href="#" class="platform-btn">🎵 TikTok</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Freestyle 3 -->
+            <div class="freestyle-card">
+                <div class="freestyle-thumbnail">
+                    <div class="play-icon">▶️</div>
+                    💯
+                </div>
+                <div class="freestyle-info">
+                    <h3>Radio Freestyle Challenge</h3>
+                    <div class="freestyle-meta">
+                        <span>👁️ 60K views</span>
+                        <span>📅 Sep 2024</span>
+                    </div>
+                    <p class="freestyle-description">Called in to freestyle on live radio. Had to bring the heat!</p>
+                    <div class="platform-links">
+                        <a href="#" class="platform-btn">▶️ YouTube</a>
+                        <a href="#" class="platform-btn">📘 Facebook</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more freestyles following the same pattern -->
+            <div class="freestyle-card">
+                <div class="freestyle-thumbnail">
+                    <div class="play-icon">▶️</div>
+                    ⚡
+                </div>
+                <div class="freestyle-info">
+                    <h3>Parking Lot Freestyle</h3>
+                    <div class="freestyle-meta">
+                        <span>👁️ 35K views</span>
+                        <span>📅 Aug 2024</span>
+                    </div>
+                    <p class="freestyle-description">Spontaneous session in the parking lot. Pure raw energy.</p>
+                    <div class="platform-links">
+                        <a href="#" class="platform-btn">▶️ YouTube</a>
+                        <a href="#" class="platform-btn">🎵 TikTok</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Style Section -->
+        <section class="style-section">
+            <h2>My Freestyle Style</h2>
+            <div class="style-grid">
+                <div class="style-card">
+                    <div class="style-icon">⚡</div>
+                    <h3>Off The Dome</h3>
+                    <p>100% improvised. Every line, every bar comes straight from the moment. No pre-written verses.</p>
+                </div>
+
+                <div class="style-card">
+                    <div class="style-icon">🔥</div>
+                    <h3>High Energy</h3>
+                    <p>I bring intensity and passion to every freestyle. It's not just about the words—it's about the energy.</p>
+                </div>
+
+                <div class="style-card">
+                    <div class="style-icon">🎯</div>
+                    <h3>Wordplay & Flow</h3>
+                    <p>Complex rhyme schemes, smooth flow switches, and clever wordplay that keeps you listening.</p>
+                </div>
+
+                <div class="style-card">
+                    <div class="style-icon">💯</div>
+                    <h3>Authentic</h3>
+                    <p>Real experiences, real emotions. Every freestyle tells a story or captures a moment in time.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a> | 
+            <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> | 
+            <a href="https://tiktok.com/@yourprofile" target="_blank">TikTok</a> | 
+            <a href="https://x.com/yourprofile" target="_blank">X</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

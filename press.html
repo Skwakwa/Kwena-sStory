@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Kit - Your Name</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: #ffffff; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); padding: 20px 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo { font-size: 1.5em; font-weight: bold; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav ul { list-style: none; display: flex; gap: 30px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: #667eea; }
+        .page-hero { padding: 150px 20px 80px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .page-hero h1 { font-size: 4em; margin-bottom: 20px; }
+        .page-hero p { font-size: 1.4em; opacity: 0.9; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+        .section { margin-bottom: 80px; }
+        h2 { font-size: 2.5em; margin-bottom: 30px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bio-box { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; }
+        .bio-box h3 { color: #667eea; margin-bottom: 20px; font-size: 1.5em; }
+        .bio-text { color: #cccccc; line-height: 1.8; font-size: 1.1em; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 40px 0; }
+        .stat-box { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .stat-number { font-size: 2.5em; font-weight: bold; color: #667eea; margin-bottom: 5px; }
+        .stat-label { color: #999; font-size: 0.9em; }
+        .photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .photo-card { background: rgba(255,255,255,0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .photo-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; font-size: 3em; }
+        .photo-info { padding: 15px; }
+        .download-btn { display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 20px; font-weight: bold; transition: all 0.3s; margin-top: 10px; }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        .topics-list { list-style: none; }
+        .topics-list li { padding: 15px; background: rgba(255,255,255,0.03); margin-bottom: 10px; border-radius: 10px; border-left: 4px solid #667eea; color: #cccccc; }
+        .contact-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 50px; border-radius: 20px; text-align: center; margin-top: 60px; }
+        .contact-box h2 { color: white; -webkit-text-fill-color: white; }
+        .contact-info { font-size: 1.3em; margin: 20px 0; }
+        .contact-info a { color: white; text-decoration: none; font-weight: bold; }
+        footer { text-align: center; padding: 50px 20px; color: #666; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; }
+        footer a { color: #667eea; text-decoration: none; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.8em; cursor: pointer; }
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5em; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); padding: 20px; gap: 15px; }
+            nav ul.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YOUR NAME</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="comedy.html">Comedy</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="freestyles.html">Freestyles</a></li>
+                <li><a href="music-videos.html">Music Videos</a></li>
+                <li><a href="songs.html">Songs</a></li>
+                <li><a href="press.html">Media Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="page-hero">
+        <h1>📰 Media Kit</h1>
+        <p>Press Materials & Booking Information</p>
+    </section>
+    <div class="container">
+        <!-- Bio Section -->
+        <section class="section">
+            <h2>Biography</h2>
+            <div class="bio-box">
+                <h3>Short Bio (50 words)</h3>
+                <p class="bio-text">
+                    <!-- ADD YOUR SHORT BIO HERE -->
+                    [Your Name] is a dynamic speaker, comedian, and artist based in [Location]. Known for high-energy performances and authentic content, [Your Name] has inspired audiences across [region/country] through speaking events, comedy shows, and music releases. With [X] followers across social media, [Your Name] continues to make waves in [industry/niche].
+                </p>
+            </div>
+            <div class="bio-box">
+                <h3>Long Bio (200 words)</h3>
+                <p class="bio-text">
+                    <!-- ADD YOUR LONG BIO HERE -->
+                    [Your Name] is a multi-talented speaker, comedian, and artist who has built a reputation for bringing raw energy and authentic connection to every platform. Starting their journey in [year], [Your Name] has evolved from [beginning] to becoming one of the most engaging voices in [industry/niche].
+                    <br><br>
+                    As a speaker, [Your Name] has addressed audiences at [notable venues/events], delivering talks on [topics] that inspire action and transformation. Their comedy sets blend observational humor with relatable storytelling, creating performances that leave audiences laughing and thinking.
+                    <br><br>
+                    In music, [Your Name] brings that same authenticity, creating tracks that resonate with listeners through honest lyrics and infectious energy. With [X]+ speaking events, [X]+ comedy shows, and [X]+ music releases, [Your Name] continues to push boundaries and create content that matters.
+                    <br><br>
+                    [Your Name] currently resides in [Location] and is available for speaking engagements, comedy performances, and collaborative projects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="section">
+            <h2>By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Speaking Events</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Total Followers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Comedy Shows</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Music Releases</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Total Views</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Press Photos -->
+        <section class="section">
+            <h2>Press Photos</h2>
+            <p style="color: #cccccc; margin-bottom: 30px;">High-resolution photos for media use. Right-click to download.</p>
+            <div class="photos-grid">
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        📸
+                        <!-- REPLACE: <img src="press-photo-1.jpg" alt="Press Photo"> -->
+                    </div>
+                    <div class="photo-info">
+                        <p style="color: #999;">Professional Headshot</p>
+                        <a href="#" download class="download-btn">Download</a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">🎤</div>
+                    <div class="photo-info">
+                        <p style="color: #999;">On Stage</p>
+                        <a href="#" download class="download-btn">Download</a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">✨</div>
+                    <div class="photo-info">
+                        <p style="color: #999;">Candid Shot</p>
+                        <a href="#" download class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speaking Topics -->
+        <section class="section">
+            <h2>Speaking Topics</h2>
+            <ul class="topics-list">
+                <!-- ADD YOUR SPEAKING TOPICS -->
+                <li><strong>Finding Your Voice:</strong> Authenticity, confidence, and personal branding</li>
+                <li><strong>Motivation & Leadership:</strong> Inspiring action and leading with energy</li>
+                <li><strong>Energy & Performance:</strong> Bringing your best to every moment</li>
+                <li><strong>Purpose & Passion:</strong> Living with intention and impact</li>
+            </ul>
+        </section>
+
+        <!-- Contact Box -->
+        <div class="contact-box">
+            <h2>Booking & Press Inquiries</h2>
+            <div class="contact-info">
+                <p>📧 Email: <a href="mailto:booking@yourname.com">booking@yourname.com</a></p>
+                <p>📱 Phone: <a href="tel:+27XXXXXXXXX">+27 XX XXX XXXX</a></p>
+            </div>
+            <a href="contact.html" class="download-btn" style="margin-top: 20px; display: inline-block;">Contact Form</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="https://facebook.com/yourprofile">Facebook</a> | 
+            <a href="https://instagram.com/yourprofile">Instagram</a> | 
+            <a href="https://tiktok.com/@yourprofile">TikTok</a> | 
+            <a href="https://x.com/yourprofile">X</a>
+        </p>
+    </footer>
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+    </script>
+</body>
+</html>

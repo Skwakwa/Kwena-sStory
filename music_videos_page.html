@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Videos - Your Name</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: #ffffff; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); padding: 20px 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo { font-size: 1.5em; font-weight: bold; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav ul { list-style: none; display: flex; gap: 30px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: #667eea; }
+        .page-hero { padding: 150px 20px 80px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .page-hero h1 { font-size: 4em; margin-bottom: 20px; }
+        .page-hero p { font-size: 1.4em; opacity: 0.9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        h2 { font-size: 3em; text-align: center; margin-bottom: 60px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .video-card { background: rgba(255,255,255,0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
+        .video-card:hover { transform: translateY(-5px); border-color: rgba(102, 126, 234, 0.5); }
+        .video-thumbnail { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; font-size: 4em; position: relative; }
+        .video-thumbnail iframe { width: 100%; height: 100%; border: none; }
+        .video-info { padding: 25px; }
+        .video-info h3 { font-size: 1.6em; margin-bottom: 10px; color: #ffffff; }
+        .video-meta { display: flex; gap: 20px; margin-bottom: 15px; color: #999; font-size: 0.9em; }
+        .video-description { color: #cccccc; line-height: 1.6; margin-bottom: 15px; }
+        .platform-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .platform-btn { padding: 8px 20px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9em; font-weight: bold; transition: all 0.3s; }
+        .platform-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        footer { text-align: center; padding: 50px 20px; color: #666; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; }
+        footer a { color: #667eea; text-decoration: none; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.8em; cursor: pointer; }
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5em; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); padding: 20px; gap: 15px; }
+            nav ul.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YOUR NAME</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="comedy.html">Comedy</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="freestyles.html">Freestyles</a></li>
+                <li><a href="music-videos.html">Music Videos</a></li>
+                <li><a href="songs.html">Songs</a></li>
+                <li><a href="press.html">Media Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="page-hero">
+        <h1>🎬 Music Videos</h1>
+        <p>Official Visual Releases</p>
+    </section>
+    <div class="container">
+        <h2>Latest Releases</h2>
+        <div class="video-grid">
+            <!-- ADD YOUR MUSIC VIDEOS HERE -->
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    🎬
+                    <!-- REPLACE: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+                </div>
+                <div class="video-info">
+                    <h3>"Song Title" - Official Music Video</h3>
+                    <div class="video-meta">
+                        <span>👁️ 100K views</span>
+                        <span>📅 Dec 2024</span>
+                    </div>
+                    <p class="video-description">Description of your music video, the vibe, the message, and what it means to you.</p>
+                    <div class="platform-links">
+                        <a href="#" class="platform-btn">▶️ YouTube</a>
+                        <a href="#" class="platform-btn">🎵 Spotify</a>
+                        <a href="#" class="platform-btn">🍎 Apple Music</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copy above card for each video -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="https://facebook.com/yourprofile">Facebook</a> | 
+            <a href="https://instagram.com/yourprofile">Instagram</a> | 
+            <a href="https://tiktok.com/@yourprofile">TikTok</a> | 
+            <a href="https://x.com/yourprofile">X</a>
+        </p>
+    </footer>
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+    </script>
+</body>
+</html>

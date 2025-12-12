@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking - Your Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .page-hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Topics Section */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .topic-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .topic-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .topic-card p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .topic-highlights {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .topic-highlights li {
+            padding: 8px 0;
+            color: #999;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .topic-highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Past Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .event-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .event-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-info {
+            padding: 25px;
+        }
+
+        .event-date {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-info h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .event-location {
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .event-description {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: rgba(255,255,255,0.03);
+            padding: 80px 20px;
+            border-radius: 30px;
+            margin-bottom: 80px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-text {
+            font-size: 1.1em;
+            color: #cccccc;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .testimonial-role {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            -webkit-text-fill-color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5em;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 20px;
+                gap: 15px;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YOUR NAME</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="comedy.html">Comedy</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="freestyles.html">Freestyles</a></li>
+                <li><a href="music-videos.html">Music Videos</a></li>
+                <li><a href="songs.html">Songs</a></li>
+                <li><a href="press.html">Media Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <h1>🎤 Speaking</h1>
+        <p>Inspiring Talks That Move People to Action</p>
+    </section>
+
+    <div class="container">
+        <!-- Speaking Topics -->
+        <h2>Speaking Topics</h2>
+        <div class="topics-grid">
+            <!-- ADD YOUR TOPICS HERE -->
+            <div class="topic-card">
+                <div class="topic-icon">💡</div>
+                <h3>Finding Your Voice</h3>
+                <p>Discover your authentic self and learn to speak with confidence and purpose.</p>
+                <ul class="topic-highlights">
+                    <li>Overcoming fear of public speaking</li>
+                    <li>Authenticity in communication</li>
+                    <li>Building personal brand</li>
+                    <li>Connecting with any audience</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-icon">🚀</div>
+                <h3>Motivation & Leadership</h3>
+                <p>Transform your mindset and lead with energy, passion, and real impact.</p>
+                <ul class="topic-highlights">
+                    <li>Developing leadership skills</li>
+                    <li>Creating lasting motivation</li>
+                    <li>Team building strategies</li>
+                    <li>Overcoming obstacles</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-icon">⚡</div>
+                <h3>Energy & Performance</h3>
+                <p>Bring high energy to everything you do and perform at your peak consistently.</p>
+                <ul class="topic-highlights">
+                    <li>Managing energy levels</li>
+                    <li>Peak performance habits</li>
+                    <li>Stress management</li>
+                    <li>Consistency in excellence</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-icon">🎯</div>
+                <h3>Purpose & Passion</h3>
+                <p>Identify what drives you and turn passion into purposeful action.</p>
+                <ul class="topic-highlights">
+                    <li>Finding your "why"</li>
+                    <li>Turning passion to career</li>
+                    <li>Setting meaningful goals</li>
+                    <li>Living with intention</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Past Speaking Events -->
+        <h2>Past Speaking Events</h2>
+        <div class="events-grid">
+            <!-- ADD YOUR PAST EVENTS HERE -->
+            <div class="event-card">
+                <div class="event-image">
+                    <!-- Replace with actual image: <img src="images/event1.jpg" alt="Event"> -->
+                    🎤
+                </div>
+                <div class="event-info">
+                    <div class="event-date">January 2024</div>
+                    <h3>Corporate Leadership Summit</h3>
+                    <div class="event-location">📍 Johannesburg, South Africa</div>
+                    <p class="event-description">Keynote speech on leadership and motivation for 500+ corporate executives.</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-image">
+                    🎯
+                </div>
+                <div class="event-info">
+                    <div class="event-date">March 2024</div>
+                    <h3>Youth Empowerment Conference</h3>
+                    <div class="event-location">📍 Pretoria, South Africa</div>
+                    <p class="event-description">Inspiring young leaders to find their voice and make an impact.</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-image">
+                    💼
+                </div>
+                <div class="event-info">
+                    <div class="event-date">May 2024</div>
+                    <h3>Business Growth Seminar</h3>
+                    <div class="event-location">📍 Cape Town, South Africa</div>
+                    <p class="event-description">Strategies for entrepreneurs to scale with passion and purpose.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials">
+            <h2>What People Say</h2>
+            <div class="testimonial-grid">
+                <!-- ADD YOUR TESTIMONIALS HERE -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"[Your Name]'s energy is infectious! Our team left feeling motivated and ready to take on new challenges. Best speaker we've had in years."</p>
+                    <div class="testimonial-author">Jane Doe</div>
+                    <div class="testimonial-role">CEO, Tech Company</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Authentic, powerful, and exactly what we needed. [Your Name] connected with our audience instantly and delivered a message that still resonates months later."</p>
+                    <div class="testimonial-author">John Smith</div>
+                    <div class="testimonial-role">Event Organizer</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I've seen many speakers, but [Your Name] brings something different—real energy, real stories, and real impact. Our students were completely engaged."</p>
+                    <div class="testimonial-author">Mary Johnson</div>
+                    <div class="testimonial-role">University Director</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Book Me For Your Event</h2>
+            <p>Let's create an unforgettable experience for your audience</p>
+            <a href="contact.html" class="btn">Get In Touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a> | 
+            <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> | 
+            <a href="https://tiktok.com/@yourprofile" target="_blank">TikTok</a> | 
+            <a href="https://x.com/yourprofile" target="_blank">X</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Your Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        /* Journey Timeline */
+        .journey-section {
+            margin: 100px 0;
+        }
+
+        .journey-section h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -56px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid #0a0a0a;
+        }
+
+        .timeline-year {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            font-size: 1.1em;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: rgba(255,255,255,0.03);
+            padding: 80px 20px;
+            border-radius: 30px;
+            margin: 80px 0;
+        }
+
+        .values-section h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .value-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .value-card p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5em;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline {
+                padding-left: 30px;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 20px;
+                gap: 15px;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YOUR NAME</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="comedy.html">Comedy</a></li>
+                <li><a href="content.html">Content</a></li>
+                <li><a href="freestyles.html">Freestyles</a></li>
+                <li><a href="music-videos.html">Music Videos</a></li>
+                <li><a href="songs.html">Songs</a></li>
+                <li><a href="press.html">Media Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>About Me</h1>
+        <p>My Story, My Journey, My Why</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Grid -->
+        <div class="about-grid">
+            <div class="about-image">
+                <!-- ADD YOUR PHOTO HERE -->
+                <img src="https://via.placeholder.com/600x500" alt="Your Name">
+            </div>
+            <div class="about-text">
+                <h2>Who I Am</h2>
+                <!-- ADD YOUR STORY HERE -->
+                <p>I'm [Your Name], and I'm all about bringing energy, authenticity, and real connections to everything I do. Whether I'm on stage speaking, performing comedy, or creating music, my mission is simple: make people feel something.</p>
+                
+                <p>I started this journey because I believe everyone has a story worth telling, and I found mine through speaking, comedy, and music. Each platform gives me a different way to connect, inspire, and entertain.</p>
+                
+                <p>My approach is raw and real. No filters, no fake personas—just me being authentic and bringing the energy that makes people stop, listen, and feel alive.</p>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-box">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Speaking Events</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Total Followers</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Comedy Shows</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Music Releases</div>
+            </div>
+        </div>
+
+        <!-- Journey Timeline -->
+        <section class="journey-section">
+            <h2>My Journey</h2>
+            <div class="timeline">
+                <!-- ADD YOUR TIMELINE EVENTS HERE -->
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>The Beginning</h3>
+                        <p>Started my journey in [speaking/comedy/music]. First event at [venue/location]. Realized this is what I'm meant to do.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2021</div>
+                    <div class="timeline-content">
+                        <h3>Finding My Voice</h3>
+                        <p>Performed at [major event]. Released [first major project]. Grew my audience and refined my craft.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-content">
+                        <h3>Breaking Through</h3>
+                        <p>Hit [milestone]. Collaborated with [artist/speaker]. Content went viral with [number] views.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h3>Leveling Up</h3>
+                        <p>Spoke at [prestigious venue]. Released [album/special]. Built a community of [number] engaged followers.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Current Chapter</h3>
+                        <p>Currently working on [project]. Focused on [goal]. Continuing to grow and inspire daily.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <h2>What Drives Me</h2>
+            <div class="values-grid">
+                <!-- ADD OR MODIFY YOUR VALUES -->
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Authenticity</h3>
+                    <p>I show up as myself, always. No fake personas, just real energy and genuine connection.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💪</div>
+                    <h3>Impact</h3>
+                    <p>Every performance, every word, every track is about making people feel something meaningful.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Growth</h3>
+                    <p>Always learning, always evolving. Yesterday's best is today's baseline.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community</h3>
+                    <p>Building connections that matter. We rise together, we celebrate together.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a> | 
+            <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> | 
+            <a href="https://tiktok.com/@yourprofile" target="_blank">TikTok</a> | 
+            <a href="https://x.com/yourprofile" target="_blank">X</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
